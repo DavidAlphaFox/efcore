@@ -338,7 +338,7 @@ public static class EntityFrameworkServiceCollectionExtensions
 
         serviceCollection.TryAddSingleton<IDbContextPool<TContextImplementation>, DbContextPool<TContextImplementation>>();
         serviceCollection.TryAddScoped<IScopedDbContextLease<TContextImplementation>, ScopedDbContextLease<TContextImplementation>>();
-
+        // 使用工厂方法去添加一个Context
         serviceCollection.TryAddScoped<TContextService>(
             sp => sp.GetRequiredService<IScopedDbContextLease<TContextImplementation>>().Context);
 
